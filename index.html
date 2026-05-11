@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -465,6 +464,23 @@
       margin-bottom: 12px;
     }
     .service-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+    .city-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .city-list span {
+      border: 1px solid rgba(204,0,0,0.28);
+      background: rgba(204,0,0,0.08);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1;
+      padding: 8px 10px;
+      white-space: nowrap;
+    }
     .service-tag {
       display: inline-block;
       margin-top: 20px;
@@ -920,7 +936,10 @@
           <div class="service-num">03</div>
           <div class="service-icon">📍</div>
           <h3>Intervention dans les Yvelines</h3>
-          <p>Couverture de l'ensemble du département 78 : Versailles, Poissy, Mantes-la-Jolie, Rambouillet, Saint-Germain-en-Laye et communes limitrophes. Délai d'intervention &lt; 2h.</p>
+          <p>Couverture de l'ensemble du département 78 : intervention en nettoyage, désinfection et décontamination après présence de rongeurs dans les principales villes des Yvelines.</p>
+          <div class="city-list" aria-label="Principales villes couvertes dans les Yvelines">
+            <span>Versailles</span><span>Saint-Germain-en-Laye</span><span>Mantes-la-Jolie</span><span>Poissy</span><span>Sartrouville</span><span>Conflans-Sainte-Honorine</span><span>Montigny-le-Bretonneux</span><span>Trappes</span><span>Rambouillet</span><span>Les Mureaux</span><span>Houilles</span><span>Plaisir</span><span>Élancourt</span><span>Guyancourt</span><span>Chatou</span><span>Le Chesnay-Rocquencourt</span><span>Vélizy-Villacoublay</span><span>Maisons-Laffitte</span><span>Mantes-la-Ville</span><span>Achères</span><span>Limay</span><span>Aubergenville</span><span>Verneuil-sur-Seine</span><span>Carrières-sous-Poissy</span><span>La Celle-Saint-Cloud</span>
+          </div>
           <div class="service-tag">Zone 78 couverte →</div>
         </div>
 
@@ -1178,4 +1197,3 @@
   </script>
 </body>
 </html>
-
