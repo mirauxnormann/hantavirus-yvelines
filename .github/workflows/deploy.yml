@@ -15,18 +15,12 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Get fresh Cloudflare token
-        id: cf_token
+      - name: Restore Wrangler auth
         run: |
-          RESPONSE=$(curl -s -X POST https://dash.cloudflare.com/oauth2/token \
-            -H "Content-Type: application/x-www-form-urlencoded" \
-            -d "grant_type=refresh_token&refresh_token=${{ secrets.CF_REFRESH_TOKEN }}&client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7")
-          TOKEN=$(echo $RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
-          echo "::add-mask::$TOKEN"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+          mkdir -p ~/.wrangler/config
+          echo "${{ secrets.CF_WRANGLER_CONFIG }}" | base64 -d > ~/.wrangler/config/default.toml
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler@latest pages deploy . --project-name hantavirus-yvelines --branch master --commit-dirty=true
         env:
-          CLOUDFLARE_API_TOKEN: ${{ steps.cf_token.outputs.token }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
