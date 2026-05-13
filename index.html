@@ -884,6 +884,83 @@
       .cta-avail { text-align: left; }
     }
 
+    /* ===== CARTE ===== */
+    #carte {
+      padding: 100px 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .carte-head { text-align: center; margin-bottom: 48px; }
+    .carte-head .section-sub { margin: 0 auto; }
+    .cpt-wrap { display: flex; justify-content: center; margin-top: 32px; }
+    .cpt-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-width: 280px;
+    }
+    .cpt-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+    .cpt-lbl { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 10px; }
+    .cpt-num { font-size: 4.5rem; font-weight: 900; color: var(--red); line-height: 1; font-variant-numeric: tabular-nums; }
+    .cpt-meta { display: flex; align-items: center; gap: 6px; justify-content: center; margin-top: 10px; font-size: .75rem; color: var(--muted); }
+    .live-dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; animation: blink 2s infinite; flex-shrink: 0; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+    .carte-body {
+      display: grid;
+      grid-template-columns: 230px 1fr 210px;
+      gap: 20px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .c-panel { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
+    .c-panel h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--red); font-weight: 700; margin-bottom: 18px; }
+    .tdept-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .tdept-item:last-child { border-bottom: none; }
+    .tdept-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .tdept-rank { font-size: .72rem; color: var(--muted); font-weight: 700; flex-shrink: 0; width: 20px; }
+    .tdept-name { font-size: .83rem; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tdept-val { font-size: .83rem; color: var(--red-bright); font-weight: 700; flex-shrink: 0; }
+    .tdept-track { height: 3px; background: var(--border); border-radius: 2px; }
+    .tdept-fill { height: 100%; background: var(--red); border-radius: 2px; transition: width .6s ease; }
+    #france-map { width: 100%; height: auto; display: block; }
+    .dept-path { stroke: #252525; stroke-width: .5; cursor: pointer; transition: opacity .15s; }
+    .dept-path:hover { stroke: #666; stroke-width: 1.2; opacity: .8; }
+    .dept-path.is78 { stroke: var(--red-bright); stroke-width: 1.5; }
+    .dept-path.is78:hover { stroke: var(--white); }
+    .map-leg { display: flex; align-items: center; gap: 10px; margin-top: 14px; justify-content: center; }
+    .map-leg-lbl { font-size: .72rem; color: var(--muted); }
+    .map-leg-bar { width: 160px; height: 8px; border-radius: 4px; background: linear-gradient(to right, #252525, var(--red)); border: 1px solid var(--border); }
+    .dep78-num { font-size: 2.8rem; font-weight: 900; color: var(--red); text-align: center; line-height: 1; }
+    .dep78-lbl { font-size: .72rem; color: var(--muted); text-align: center; margin-top: 6px; text-transform: uppercase; letter-spacing: .12em; }
+    .dep78-note { font-size: .78rem; color: var(--muted); line-height: 1.65; border-top: 1px solid var(--border); margin-top: 18px; padding-top: 16px; }
+    .map-tip {
+      position: fixed;
+      background: rgba(10,10,10,.96);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      pointer-events: none;
+      z-index: 9999;
+      display: none;
+      backdrop-filter: blur(8px);
+    }
+    .map-tip-dept { font-size: .88rem; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .map-tip-cas { font-size: .82rem; color: var(--red-bright); font-weight: 600; }
+    @media (max-width: 1020px) {
+      .carte-body { grid-template-columns: 1fr 1fr; }
+      .map-svg-w { grid-column: span 2; }
+    }
+    @media (max-width: 640px) {
+      .carte-body { grid-template-columns: 1fr; }
+      .map-svg-w { grid-column: span 1; }
+      .cpt-box { padding: 20px 28px; }
+      .cpt-num { font-size: 3rem; }
+    }
+
     /* ===== SCROLL REVEAL ===== */
     .reveal {
       opacity: 0;
@@ -911,6 +988,7 @@
         <li><a href="#risques">Symptômes</a></li>
         <li><a href="#prevention">Prévention</a></li>
         <li><a href="#boutique">Boutique</a></li>
+        <li><a href="#carte">Carte</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-right">
@@ -929,6 +1007,7 @@
     <a href="#risques" onclick="toggleMenu()">Symptômes</a>
     <a href="#prevention" onclick="toggleMenu()">Prévention</a>
     <a href="#boutique" onclick="toggleMenu()">Boutique</a>
+    <a href="#carte" onclick="toggleMenu()">Carte des cas</a>
     <a href="#contact" onclick="toggleMenu()">Contact</a>
     <a href="tel:0123456789" class="btn btn-red" style="margin-top:8px;justify-content:center;">Demander une intervention</a>
   </div>
@@ -1105,6 +1184,56 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ===== CARTE DES CAS ===== -->
+  <section id="carte">
+    <div class="container">
+      <div class="carte-head reveal">
+        <div class="section-label">Surveillance épidémiologique</div>
+        <h2 class="section-title">Cas contact recensés en France</h2>
+        <p class="section-sub">Carte de chaleur par département — plus la teinte rouge est intense, plus le nombre de cas contact est élevé.</p>
+        <div class="cpt-wrap">
+          <div class="cpt-box">
+            <div class="cpt-lbl">Total cas contact recensés</div>
+            <div class="cpt-num" id="totalCas">—</div>
+            <div class="cpt-meta">
+              <span class="live-dot"></span>
+              <span id="lastUpdate">Chargement des données…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carte-body reveal">
+        <div class="c-panel">
+          <h4>Départements les plus touchés</h4>
+          <div id="topDepts"><div style="color:var(--muted);font-size:.85rem">Chargement…</div></div>
+        </div>
+        <div class="map-svg-w">
+          <svg id="france-map" viewBox="0 0 700 560"></svg>
+          <div class="map-leg">
+            <span class="map-leg-lbl">0 cas</span>
+            <div class="map-leg-bar"></div>
+            <span class="map-leg-lbl" id="legendMax">— cas</span>
+          </div>
+        </div>
+        <div class="c-panel">
+          <h4>Yvelines (78)</h4>
+          <div style="margin-bottom:16px">
+            <div class="dep78-num" id="cas78">—</div>
+            <div class="dep78-lbl">cas contact recensés</div>
+          </div>
+          <div class="dep78-note">
+            Département le plus surveillé de notre zone d'intervention.<br><br>
+            Données rechargées automatiquement toutes les 60 secondes.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-tip" id="mapTip">
+      <div class="map-tip-dept" id="tipDept"></div>
+      <div class="map-tip-cas" id="tipCas"></div>
     </div>
   </section>
 
@@ -1435,6 +1564,120 @@
         }
       });
     }, { passive: true });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    // ===== CARTE HANTAVIRUS =====
+    (async function () {
+      const GEO = 'https://cdn.jsdelivr.net/gh/gregoiredavid/france-geojson@master/departements-version-simplifiee.geojson';
+      const DATA = 'cases.json';
+      let prevTotal = 0;
+      const names = {};
+      const tip = document.getElementById('mapTip');
+      const tipDept = document.getElementById('tipDept');
+      const tipCas = document.getElementById('tipCas');
+
+      function animNum(el, from, to) {
+        const t0 = performance.now(), dur = 1200;
+        (function run(now) {
+          const p = Math.min((now - t0) / dur, 1);
+          el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))).toLocaleString('fr-FR');
+          if (p < 1) requestAnimationFrame(run);
+        })(performance.now());
+      }
+
+      function colorOf(val, max) {
+        if (val === 0) return '#1c1c1c';
+        const t = Math.pow(val / max, 0.55);
+        return `rgb(${Math.round(48 + t * 180)},0,0)`;
+      }
+
+      function render(cases) {
+        const d = cases.departments || {};
+        const total = Object.values(d).reduce((s, v) => s + v, 0);
+        const max = Math.max(...Object.values(d).filter(v => v > 0), 1);
+
+        animNum(document.getElementById('totalCas'), prevTotal, total);
+        prevTotal = total;
+
+        const el78 = document.getElementById('cas78');
+        if (el78) el78.textContent = (d['78'] || 0).toLocaleString('fr-FR');
+
+        const upEl = document.getElementById('lastUpdate');
+        if (upEl) {
+          const dt = new Date(cases.lastUpdate);
+          upEl.textContent = 'Mis à jour le ' + dt.toLocaleDateString('fr-FR', {
+            day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+        }
+
+        const legMax = document.getElementById('legendMax');
+        if (legMax) legMax.textContent = max + ' cas';
+
+        document.querySelectorAll('.dept-path').forEach(p => {
+          const v = d[p.dataset.code] || 0;
+          p.setAttribute('fill', colorOf(v, max));
+          p.dataset.cases = v;
+        });
+
+        const top = Object.entries(d).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]).slice(0, 8);
+        const topMax = top[0]?.[1] || 1;
+        document.getElementById('topDepts').innerHTML = top.map(([code, val], i) =>
+          `<div class="tdept-item">
+            <div class="tdept-row">
+              <span class="tdept-rank">#${i + 1}</span>
+              <span class="tdept-name">${names[code] || code} (${code})</span>
+              <span class="tdept-val">${val}</span>
+            </div>
+            <div class="tdept-track"><div class="tdept-fill" style="width:${Math.round(val / topMax * 100)}%"></div></div>
+          </div>`
+        ).join('');
+      }
+
+      async function getData() {
+        return fetch(DATA + '?_=' + Date.now()).then(r => r.json());
+      }
+
+      try {
+        const [geo, cases] = await Promise.all([fetch(GEO).then(r => r.json()), getData()]);
+        const svg = document.getElementById('france-map');
+        const W = 700, H = 560;
+        const proj = d3.geoConicConformal()
+          .center([2.454071, 46.279229])
+          .parallels([44, 49])
+          .scale(3050)
+          .translate([W / 2, H / 2 + 25]);
+        const pathFn = d3.geoPath().projection(proj);
+
+        geo.features.forEach(f => {
+          const code = f.properties.code;
+          const nom = f.properties.nom;
+          names[code] = nom;
+          const svgD = pathFn(f);
+          if (!svgD) return;
+          const el = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          el.setAttribute('d', svgD);
+          el.setAttribute('fill', '#1c1c1c');
+          el.setAttribute('class', 'dept-path' + (code === '78' ? ' is78' : ''));
+          el.dataset.code = code;
+          el.dataset.cases = 0;
+          el.addEventListener('mousemove', e => {
+            tip.style.cssText = `display:block;left:${e.clientX + 14}px;top:${e.clientY - 10}px`;
+            tipDept.textContent = nom + ' (' + code + ')';
+            const v = parseInt(el.dataset.cases || 0);
+            tipCas.textContent = v ? v + ' cas contact' : 'Aucun cas recensé';
+          });
+          el.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+          svg.appendChild(el);
+        });
+
+        render(cases);
+        setInterval(async () => { try { render(await getData()); } catch (e) {} }, 60000);
+      } catch (e) {
+        console.error('Carte:', e);
+      }
+    })();
   </script>
 </body>
 </html>
