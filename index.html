@@ -633,6 +633,32 @@
       font-size: 1.55rem;
       margin-bottom: 22px;
     }
+    .product-photo {
+      position: relative;
+      height: 158px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: -6px 0 22px;
+      background: #171717;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .shop-card.featured .product-photo { height: 190px; }
+    .product-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.92) contrast(1.05);
+    }
+    .product-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(0,0,0,0.48) 100%),
+        linear-gradient(90deg, rgba(204,0,0,0.12), transparent 48%);
+      pointer-events: none;
+    }
     .shop-card h3 {
       color: var(--white);
       font-size: 1.18rem;
@@ -809,6 +835,10 @@
       border: 1px solid rgba(204,0,0,0.25);
       font-size: 1.25rem;
       margin-bottom: 16px;
+    }
+    .drop-card .product-photo {
+      height: 132px;
+      margin: -2px 0 18px;
     }
     .drop-card h4 {
       color: var(--white);
@@ -1556,7 +1586,7 @@
       </div>
 
       <p class="shop-note reveal">
-        Important : en cas de forte infestation, grande quantité de déjections, odeur persistante, rongeur mort ou poussière importante, il vaut mieux demander une intervention professionnelle plutôt que nettoyer seul. Les prix peuvent varier selon les stocks, le fournisseur et les frais de livraison.
+        Important : en cas de forte infestation, grande quantité de déjections, odeur persistante, rongeur mort ou poussière importante, il vaut mieux demander une intervention professionnelle plutôt que nettoyer seul. Les photos sont indicatives et les produits exacts peuvent varier selon les stocks, le fournisseur et les frais de livraison.
       </p>
 
       <div class="dropship-section reveal">
@@ -1899,6 +1929,43 @@
         'Commande boutique à valider avant expédition fournisseur.'
       ].join('\n');
       window.location.href = `mailto:contact@hantavirus-yvelines.fr?subject=${encodeURIComponent('Commande boutique - ' + selectedOrder.product)}&body=${encodeURIComponent(details)}`;
+    });
+
+    // ===== PRODUCT PHOTOS =====
+    const PRODUCT_IMAGES = {
+      "Kit complet nettoyage rongeurs": "https://images.pexels.com/photos/4098783/pexels-photo-4098783.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pack protection essentiel": "https://images.pexels.com/photos/5499417/pexels-photo-5499417.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pack décontamination maison": "https://images.pexels.com/photos/4098779/pexels-photo-4098779.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pack prévention anti-retour": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Masques FFP3 - lot de 5": "https://images.pexels.com/photos/3993241/pexels-photo-3993241.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Masques FFP2 - lot de 10": "https://images.pexels.com/photos/5040577/pexels-photo-5040577.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Gants nitrile taille unique": "https://images.pexels.com/photos/4098779/pexels-photo-4098779.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Combinaison jetable + surchaussures": "https://images.pexels.com/photos/3951382/pexels-photo-3951382.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Lunettes de protection étanches": "https://images.pexels.com/photos/22944705/pexels-photo-22944705.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Visière de protection": "https://images.pexels.com/photos/5726785/pexels-photo-5726785.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Désinfectant virucide surfaces": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pulvérisateur pression 2 L": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Lingettes désinfectantes": "https://images.pexels.com/photos/4099466/pexels-photo-4099466.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Essuie-tout industriel": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Sacs renforcés hermétiques": "https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Kit ramassage sécurisé": "https://images.pexels.com/photos/4098783/pexels-photo-4098783.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Lampe frontale inspection": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Kit bouchage petites ouvertures": "https://images.pexels.com/photos/4107113/pexels-photo-4107113.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Boîtes hermétiques anti-rongeurs": "https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pack signalisation zone à risque": "https://images.pexels.com/photos/3951382/pexels-photo-3951382.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "Pièges mécaniques sans poison": "https://images.pexels.com/photos/5848947/pexels-photo-5848947.jpeg?auto=compress&cs=tinysrgb&w=900"
+    };
+
+    document.querySelectorAll('[data-product]').forEach(button => {
+      const card = button.closest('article');
+      const src = PRODUCT_IMAGES[button.dataset.product];
+      if (!card || !src || card.querySelector('.product-photo')) return;
+      const anchor = card.querySelector('.shop-icon, .drop-icon');
+      const photo = document.createElement('div');
+      photo.className = 'product-photo';
+      photo.innerHTML = `<img src="${src}" alt="Photo du produit ${button.dataset.product}" loading="lazy">`;
+      photo.querySelector('img').addEventListener('error', () => photo.remove());
+      if (anchor) anchor.insertAdjacentElement('afterend', photo);
     });
 
     // ===== MOBILE MENU =====
